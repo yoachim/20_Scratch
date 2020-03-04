@@ -44,7 +44,8 @@ Easiest if we ask what fraction of a population get recovered. Maybe do each of 
 
 ## Cosmology
 
-* number of galaxies that are good for weak lensing
+* number of galaxies that are good for large scale structure
 * Fraction of type Ia SNe recovered
 * XXX--Deep Drilling fields.  Maybe these get their own section, each DDF gets a grade?
+* photo-z quality metric?
 
