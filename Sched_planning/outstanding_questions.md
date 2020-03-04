@@ -6,9 +6,19 @@ With the release of [75 new survey simulations in v1.4](https://community.lsst.o
 
 We have several DDF strategies (baseline, DESC, AGN, Euclid). There are also proposals to ephasize a DDF in a single year, and de-emphasize other years.  What DDF observing strategy should be included in our simulations?
 
+Should DDFs be taken preferentially in dark time?
+
 ## What's the best dithering strategy for the DDFs (both spatially and rotationally)?
 
 There is tension in that DM generally prefers larger dithers for calibration and co-addition purposes, while science cases prefer smaller dithers to preserve the area that reaches the deepest levels.
+
+Some fields are near bright stars, so need to not dither too close.
+
+Euclid fields will need to be dithered along vector beween them I guess.
+
+## Should we experiment with different tessellations?
+
+We could try packing or expanding the current tessellation, trading area covered per night with area that gets more revisits in a night.
 
 
 ## What is the best camera rotational dithering strategy?
@@ -21,10 +31,10 @@ We have run a large number of potential survey footprints.
 
 Relevant sub-questions:  
 
-* How the total number of visits should be distributed between filters.  
-* Should we use dust extinction maps to define regions?
-* Should we de-emphasize the galactic anti-center?
-* Should we include some minimal coverage of the entire accesable sky for ToO potential?
+* How the total number of visits should be distributed between filters? Presumably there is a strong photo-z preference here?
+* Should we use dust extinction maps to define regions? 
+* Should we de-emphasize the (dusty) galactic anti-center?
+* Should we include some minimal coverage of the entire accesable sky for ToO potential? Maybe in only a few filters?
 * How much contingency should we have on the WFD region? The SRD states we should reach 825 visits, how far over this value should our simulations end up?
 
 ## Do we need to use a rolling cadence?
