@@ -12,4 +12,11 @@ if __name__ == '__main__':
     maxiter = args.maxiter
 
     result = even_points_xyz(npoints, maxiter=maxiter)
-    np.savez('thomson_%i.npz' % npoints, result=result)
+    np.savez('thomson_%i_ni%i.npz' % (npoints, maxiter), result=result)
+
+
+## timing:  
+#  npts    niter    time
+#  100      258       42s
+#  150      470       3m44s
+#  200      328       5m18

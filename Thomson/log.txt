@@ -1,0 +1,102 @@
+Checking how long it takes to run things:
+
+inga:Thomson yoachim$ time python run_thomson.py --npoints 1000 --maxiter 500
+initial potential= 483744.281799
+final potential= 482535.432828
+niteration= 500
+
+real    2335m50.414s
+user    2017m41.997s
+sys 315m44.725s
+
+Trying out numba
+
+only python:
+time python run_thomson.py --npoints 100 --maxiter 1000
+
+initial potential= 4467.01607828
+final potential= 4448.3506344
+niteration= 258
+
+real    0m45.791s
+user    0m43.911s
+sys 0m1.401s
+
+
+with @jit
+inga:Thomson yoachim$ time python run_thomson.py --npoints 100 --maxiter 1000
+initial potential= 4467.01607828
+final potential= 4448.3506344
+niteration= 258
+
+real    0m54.277s
+user    0m50.041s
+sys 0m1.416s
+
+so that ran slightly slower.
+
+With dumb loop and numba
+inga:Thomson yoachim$ time python run_thomson.py --npoints 100 --maxiter 1000
+initial potential= 4467.01607828
+final potential= 4448.35063519
+niteration= 205
+
+real    0m9.263s
+user    0m8.236s
+sys 0m1.142s
+
+
+-----
+
+With loop 
+inga:Thomson yoachim$ time python run_thomson.py --npoints 40 --maxiter 1000
+initial potential= 673.719538559
+final potential= 660.72530415
+niteration= 198
+
+real    1m54.730s
+user    1m52.760s
+sys 0m1.423s
+
+
+with Arrays
+inga:Thomson yoachim$ time python run_thomson.py --npoints 40 --maxiter 1000
+initial potential= 673.719538559
+final potential= 660.725304114
+niteration= 298
+
+real    0m9.246s
+user    0m8.440s
+sys 0m0.994s
+
+with loop and jit
+inga:Thomson yoachim$ time python run_thomson.py --npoints 40 --maxiter 1000
+initial potential= 673.719538559
+final potential= 660.725304183
+niteration= 634
+
+real    0m5.764s
+user    0m4.659s
+sys 0m1.176s
+
+
+
+######
+with the numba
+100    9s
+200   1m31
+300   3m42
+
+Trying to turn on parallel slowed it down.
+
+
+Using CG solver. Shit is really slow!
+inga:Thomson yoachim$ time python run_thomson.py --npoints 5192 --maxiter 2
+initial potential= 13285649.8117
+final potential= 13285277.3591
+niteration= 2
+
+real    156m51.247s
+user    156m17.879s
+sys 0m14.572s
+
