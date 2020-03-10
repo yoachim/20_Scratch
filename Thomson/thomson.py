@@ -136,7 +136,7 @@ def do_shift(a, x, y, z, fx, fy, fz):
     return x, y, z
 
 
-def sphere_iterator(npoints, maxiter=200, dtol=1e-8, verbose=True, x=None, y=None, z=None):
+def sphere_iterator(npoints, maxiter=200, dtol=1e-8, verbose=True, x=None, y=None, z=None, hold_point=True):
     guess_scale = np.sqrt(4*np.pi/npoints)
     if x is None:
         theta, phi = fib_sphere_grid(npoints)
@@ -149,6 +149,10 @@ def sphere_iterator(npoints, maxiter=200, dtol=1e-8, verbose=True, x=None, y=Non
     message = ''
     while iterate_more:
         fx, fy, fz = force_vec(x, y, z)
+        if hold_point:
+            fx[0] = 0
+            fy[0] = 0
+            fz[0] = 0
         sub_fit = find_shift_mag(x, y, z, fx, fy, fz, guess_scale=guess_scale)
         U_new = sub_fit.fun
         guess_scale = sub_fit.x

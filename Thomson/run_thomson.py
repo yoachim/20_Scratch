@@ -6,12 +6,14 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--npoints", type=int, default=10)
     parser.add_argument("--maxiter", type=int, default=300)
+    parser.add_argument("--dtol", type=float, default=1e-9)
 
     args = parser.parse_args()
     npoints = args.npoints
     maxiter = args.maxiter
+    dtol = args.dtol
 
-    result = sphere_iterator(npoints, maxiter=maxiter)
+    result = sphere_iterator(npoints, maxiter=maxiter, dtol=dtol)
     np.savez('thomson_%i_ni%i.npz' % (npoints, maxiter), result=result)
 
 
