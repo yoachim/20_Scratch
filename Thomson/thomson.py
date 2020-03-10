@@ -2,6 +2,7 @@ import numpy as np
 from scipy.optimize import minimize
 from numba import jit
 import sys
+import warnings
 
 
 def thetaphi2xyz(theta, phi):
@@ -123,6 +124,7 @@ def find_shift_mag(x, y, z, fx, fy, fz, guess_scale=.01):
 
     fit_result = minimize(new_pot, guess_scale, (x, y, z, fx, fy, fz), method='CG',
                           options={'maxiter': 10})
+
     return fit_result
 
 
@@ -137,7 +139,7 @@ def do_shift(a, x, y, z, fx, fy, fz):
 
 
 def sphere_iterator(npoints, maxiter=200, dtol=1e-8, verbose=True, x=None, y=None, z=None, hold_point=True):
-    guess_scale = np.sqrt(4*np.pi/npoints)
+    guess_scale = np.sqrt(1./npoints)
     if x is None:
         theta, phi = fib_sphere_grid(npoints)
         x, y, z = thetaphi2xyz(theta, phi)
@@ -154,17 +156,22 @@ def sphere_iterator(npoints, maxiter=200, dtol=1e-8, verbose=True, x=None, y=Non
             fy[0] = 0
             fz[0] = 0
         sub_fit = find_shift_mag(x, y, z, fx, fy, fz, guess_scale=guess_scale)
+        #if sub_fit.nit < 2:
+        #    warnings.warn('failed to iterate on scale length on iteration %i' % loop_counter)
         U_new = sub_fit.fun
         guess_scale = sub_fit.x
-        if U_new > U:
-            iterate_more = False
-            message = 'Potential increased'
-        diff = (U - U_new)/U
-        if diff < dtol:
+        #if U_new > U:
+        #    iterate_more = False
+        #    message = 'Potential increased'
+        diff = U - U_new
+        if np.abs(diff/U) < dtol:
             iterate_more = False
             message = 'dtol reached'
-        U = U_new
-        x, y, z = do_shift(sub_fit.x, x, y, z, fx, fy, fz)
+        if U_new < U:
+            U = U_new
+            x, y, z = do_shift(sub_fit.x, x, y, z, fx, fy, fz)
+        else:
+            guess_scale = 0.5*guess_scale
         loop_counter += 1
         if verbose:
             progress = loop_counter/maxiter*100
