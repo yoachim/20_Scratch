@@ -117,16 +117,14 @@ def new_pot(a, x, y, z, fx, fy, fz):
     return new_u
 
 
-def find_shift_mag(x, y, z, fx, fy, fz):
+def find_shift_mag(x, y, z, fx, fy, fz, guess_scale=.5):
     """Given positions and forces, figure out how much to scale the forces to move the points
     """
-    npts = x.size
-    area = 4*np.pi
-    ave_dist = np.sqrt(area/npts)
 
-    fit_result = minimize(new_pot, ave_dist/2., (x, y, z, fx, fy, fz), method='CG',
-                          options={'maxiter': 20})
+    fit_result = minimize(new_pot, guess_scale, (x, y, z, fx, fy, fz), method='CG',
+                          options={'maxiter': 5})
     return fit_result
+
 
 @jit()
 def do_shift(a, x, y, z, fx, fy, fz):
@@ -135,5 +133,44 @@ def do_shift(a, x, y, z, fx, fy, fz):
     z += a*fz
 
     x, y, z = xyz2sphere(x, y, z)
+    return x, y, z
+
+
+def sphere_iterator(npoints, maxiter=200, dtol=1e-8, verbose=True, x=None, y=None, z=None):
+    guess_scale = np.sqrt(4*np.pi/npoints)
+    if x is None:
+        theta, phi = fib_sphere_grid(npoints)
+        x, y, z = thetaphi2xyz(theta, phi)
+    U = elec_p_xyx_loop(x, y, z)
+    if verbose:
+        print('Initial Potential=%f' % U)
+    iterate_more = True
+    loop_counter = 0
+    message = ''
+    while iterate_more:
+        fx, fy, fz = force_vec(x, y, z)
+        sub_fit = find_shift_mag(x, y, z, fx, fy, fz, guess_scale=guess_scale)
+        U_new = sub_fit.fun
+        guess_scale = sub_fit.x
+        if U_new > U:
+            iterate_more = False
+            message = 'Potential increased'
+        diff = (U - U_new)/U
+        if diff < dtol:
+            iterate_more = False
+            message = 'dtol reached'
+        U = U_new
+        x, y, z = do_shift(sub_fit.x, x, y, z, fx, fy, fz)
+        loop_counter += 1
+        if loop_counter >= maxiter:
+            iterate_more = False
+            message = 'Max number of iterations reached'
+
+    if verbose:
+        print('Number of iterations = %i' % loop_counter)
+        print(message)
+        print('potential change = %e' % diff)
+        print('Final potential = %f' % U_new)
+
     return x, y, z
 

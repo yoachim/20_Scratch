@@ -1,6 +1,6 @@
 import argparse
 import numpy as np
-from lsst.sims.featureScheduler.thomson import even_points_xyz
+from thomson import sphere_iterator
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -11,7 +11,7 @@ if __name__ == '__main__':
     npoints = args.npoints
     maxiter = args.maxiter
 
-    result = even_points_xyz(npoints, maxiter=maxiter)
+    result = sphere_iterator(npoints, maxiter=maxiter)
     np.savez('thomson_%i_ni%i.npz' % (npoints, maxiter), result=result)
 
 
