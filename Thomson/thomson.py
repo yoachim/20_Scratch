@@ -48,7 +48,7 @@ def xyz2sphere(x, y, z):
 
 
 @jit()
-def elec_p_xyx_loop(x, y, z):
+def elec_p_xyz_loop(x, y, z):
     """Electric potential of electrons on a sphere
     do this with a brutal loop that can be numba ified
     """
@@ -98,10 +98,9 @@ def force_vec(x, y, z):
     for i in range(npts):
         # magnitude of the force along the radial direction
         f_r = forces_x[i]*x[i] + forces_y[i]*y[i] + forces_z[i]*z[i]
-        f_r_sqrt = f_r**0.5
-        forces_x[i] = forces_x[i]-f_r_sqrt*x[i]
-        forces_y[i] = forces_y[i]-f_r_sqrt*y[i]
-        forces_z[i] = forces_z[i]-f_r_sqrt*z[i]
+        forces_x[i] = forces_x[i]-f_r*x[i]
+        forces_y[i] = forces_y[i]-f_r*y[i]
+        forces_z[i] = forces_z[i]-f_r*z[i]
 
     max_force = np.max(forces_x**2+forces_y**2+forces_z**2)**0.5
 
@@ -110,20 +109,20 @@ def force_vec(x, y, z):
 
 def new_pot(a, x, y, z, fx, fy, fz):
 
-    x += a*fx
-    y += a*fy
-    z += a*fz
+    x_out = x + a*fx
+    y_out = y + a*fy
+    z_out = z + a*fz
 
-    new_u = elec_p_xyx_loop(x, y, z)
+    new_u = elec_p_xyz_loop(x_out, y_out, z_out)
     return new_u
 
 
-def find_shift_mag(x, y, z, fx, fy, fz, guess_scale=.5):
+def find_shift_mag(x, y, z, fx, fy, fz, guess_scale=.01):
     """Given positions and forces, figure out how much to scale the forces to move the points
     """
 
     fit_result = minimize(new_pot, guess_scale, (x, y, z, fx, fy, fz), method='CG',
-                          options={'maxiter': 5})
+                          options={'maxiter': 10})
     return fit_result
 
 
@@ -142,7 +141,7 @@ def sphere_iterator(npoints, maxiter=200, dtol=1e-8, verbose=True, x=None, y=Non
     if x is None:
         theta, phi = fib_sphere_grid(npoints)
         x, y, z = thetaphi2xyz(theta, phi)
-    U = elec_p_xyx_loop(x, y, z)
+    U = elec_p_xyz_loop(x, y, z)
     if verbose:
         print('Initial Potential=%f' % U)
     iterate_more = True
@@ -179,7 +178,7 @@ def sphere_iterator(npoints, maxiter=200, dtol=1e-8, verbose=True, x=None, y=Non
     if verbose:
         print('Number of iterations = %i' % loop_counter)
         print(message)
-        print('potential change = %e' % diff)
+        print('final step potential change = %e' % diff)
         print('Final potential = %f' % U_new)
 
     return x, y, z
