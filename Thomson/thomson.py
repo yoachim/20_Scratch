@@ -35,30 +35,22 @@ def fib_sphere_grid(npoints):
     return theta, phi
 
 
-def x02sphere(x0):
-    x0 = x0.reshape(3, int(x0.size/3))
-    x = x0[0, :]
-    y = x0[1, :]
-    z = x0[2, :]
+@jit()
+def xyz2sphere(x, y, z):
 
     r = np.sqrt(x**2 + y**2 + z**2)
     x = x/r
     y = y/r
     z = z/r
 
-    return np.concatenate((x, y, z))
+    return x, y, z
 
 
 @jit()
-def elec_p_xyx_loop(x0, x=None, y=None, z=None):
+def elec_p_xyx_loop(x, y, z):
     """Electric potential of electrons on a sphere
     do this with a brutal loop that can be numba ified
     """
-    if x0 is not None:
-        x0 = x0.reshape(3, int(x0.size/3))
-        x = x0[0, :]
-        y = x0[1, :]
-        z = x0[2, :]
     U = 0.
 
     r = np.sqrt(x**2 + y**2 + z**2)
@@ -75,17 +67,14 @@ def elec_p_xyx_loop(x0, x=None, y=None, z=None):
 
 
 @jit()
-def force_vec(x0):
+def force_vec(x, y, z):
     """Find the non-radial vector for the force on each electron
     """
-    x0 = x0.reshape(3, int(x0.size/3))
-    x = x0[0, :]
-    y = x0[1, :]
-    z = x0[2, :]
-
     npts = x.size
 
-    forces = np.zeros((3, npts))
+    forces_x = x*0
+    forces_y = x*0
+    forces_z = x*0
     for i in range(npts):
         for j in range(i+1, npts):
             d_x = x[i]-x[j]
@@ -97,46 +86,54 @@ def force_vec(x0):
             f_y = d_y/dsq
             f_z = d_z/dsq
 
-            forces[:, i] += [f_x, f_y, f_z]
-            forces[:, j] += -1.*[f_x, f_y, f_z]
+            forces_x[i] += f_x
+            forces_y[i] += f_y
+            forces_z[i] += f_z
+
+            forces_x[j] -= f_x
+            forces_y[j] -= f_y
+            forces_z[j] -= f_z
 
     for i in range(npts):
         # magnitude of the force along the radial direction
-        f_r = forces[0, i]*x[i] + forces[1, i]*y[i] + forces[2, i]*z[i]
+        f_r = forces_x[i]*x[i] + forces_y[i]*y[i] + forces_z[i]*z[i]
         f_r_sqrt = f_r**0.5
-        forces[0, i] = forces[0, i]-f_r_sqrt*x[i]
-        forces[1, i] = forces[1, i]-f_r_sqrt*y[i]
-        forces[2, i] = forces[2, i]-f_r_sqrt*z[i]
+        forces_x[i] = forces_x[i]-f_r_sqrt*x[i]
+        forces_y[i] = forces_y[i]-f_r_sqrt*y[i]
+        forces_z[i] = forces_z[i]-f_r_sqrt*z[i]
 
-    max_force = np.max(forces[0, :]**2+forces[1, :]**2+forces[2, :]**2)**0.5
+    max_force = np.max(forces_x**2+forces_y**2+forces_z**2)**0.5
 
-    return forces/max_force
+    return forces_x/max_force, forces_y/max_force, forces_z/max_force
 
 
-def new_pot(a, x0, forces):
-    x0 = x0.reshape(3, int(x0.size/3))
-    x = x0[0, :]
-    y = x0[1, :]
-    z = x0[2, :]
+def new_pot(a, x, y, z, fx, fy, fz):
 
-    x += a*forces[0, :]
-    y += a*forces[1, :]
-    z += a*forces[2, :]
+    x += a*fx
+    y += a*fy
+    z += a*fz
 
-    new_u = elec_p_xyx_loop(None, x=x, y=y, z=z)
+    new_u = elec_p_xyx_loop(x, y, z)
     return new_u
 
 
-def shift_to_min(x0, forces):
+def find_shift_mag(x, y, z, fx, fy, fz):
     """Given positions and forces, figure out how much to scale the forces to move the points
     """
-    npts = x0.size/3
+    npts = x.size
     area = 4*np.pi
     ave_dist = np.sqrt(area/npts)
 
-    fit_result = minimize(new_pot, ave_dist/2., (x0, forces))
+    fit_result = minimize(new_pot, ave_dist/2., (x, y, z, fx, fy, fz), method='CG',
+                          options={'maxiter': 20})
     return fit_result
 
+@jit()
+def do_shift(a, x, y, z, fx, fy, fz):
+    x += a*fx
+    y += a*fy
+    z += a*fz
 
-
+    x, y, z = xyz2sphere(x, y, z)
+    return x, y, z
 
