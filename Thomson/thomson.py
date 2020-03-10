@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.optimize import minimize
 from numba import jit
+import sys
 
 
 def thetaphi2xyz(theta, phi):
@@ -166,6 +167,11 @@ def sphere_iterator(npoints, maxiter=200, dtol=1e-8, verbose=True, x=None, y=Non
         U = U_new
         x, y, z = do_shift(sub_fit.x, x, y, z, fx, fy, fz)
         loop_counter += 1
+        if verbose:
+            progress = loop_counter/maxiter*100
+            text = '\rprogress=%.1f%%' % progress
+            sys.stdout.write(text)
+            sys.stdout.flush()
         if loop_counter >= maxiter:
             iterate_more = False
             message = 'Max number of iterations reached'
@@ -177,4 +183,3 @@ def sphere_iterator(npoints, maxiter=200, dtol=1e-8, verbose=True, x=None, y=Non
         print('Final potential = %f' % U_new)
 
     return x, y, z
-
