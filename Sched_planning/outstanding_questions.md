@@ -41,6 +41,8 @@ Relevant sub-questions:
 
 Rolling cadence makes it possible to better sample light curves of transient and variable objects in alternating years. 
 
+Should rolling be WFD, or other regions of the sky as well?
+
 ## Should we use variable exposure times?
 
 We can vary the exposure times based on the observing conditions to help keep individual exposures to similar depths.
@@ -99,4 +101,13 @@ u-band can be read noise dominated, so we should probably switch to 60s (or 2x30
 
 We currently swap the u and z filters, leaving the u only loaded around new moon. 
 
+## What should the plan be for ToO LIGO events?
+
+Should we extend all the way to the north so that we have image templates for events that happen outside our usual footprint?
+
+Should we only follow up ToO events that fall in the WFD area?
+
+What should the search strategy be for ToOs? What filters, what dithering strategy to fill chip/raft gaps? 
+
+Is the strategy that Rubin makes a detection, then leaves further followup to other telescopes? Some ToO white papers seem to advocate ToO followup over multiple days.
 
