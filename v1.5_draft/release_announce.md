@@ -25,13 +25,13 @@ Git repo with more notes on the individual runs: https://github.com/lsst-sims/si
 
 The databases are available from NCSA at: https://lsst-web.ncsa.illinois.edu/sim-data/sims_featureScheduler_runs1.5/
 
-MAF output will be avialable at:  http://astro-lsst-01.astro.washington.edu:8083
+MAF output will be available at:  http://astro-lsst-01.astro.washington.edu:8083
 
 New experiments in this release:
 
 ## dcr
 
-These runs intentionally take some observations at high airmass every year so DCR can be measured and corrected for in difference imaging.
+These runs intentionally take some observations at high airmass every year so DCR can be measured and corrected for in difference imaging. In theory, one can also measure the astrometric shift caused by DCR for objects with sharp breaks in their SEDs (e.g., AGN with large emission lines).
 
 ## filter_dist
 
@@ -39,6 +39,6 @@ These runs vary the filter distribution in the WFD area. Our baseline filter dis
 
 ## greedy_footprint
 
-Here we avoid observing the ecliptic in twilight time, thereby ensuring nearly all ecliptic observations are taken in pairs.
+Here we avoid observing the ecliptic in twilight time, thereby ensuring nearly all ecliptic observations are taken in pairs. 
 
 
