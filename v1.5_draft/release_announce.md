@@ -25,7 +25,7 @@ Git repo with more notes on the individual runs: https://github.com/lsst-sims/si
 
 The databases are available from NCSA at: https://lsst-web.ncsa.illinois.edu/sim-data/sims_featureScheduler_runs1.5/
 
-MAF output will be available at:  http://astro-lsst-01.astro.washington.edu:8083
+MAF output and databases available at:  http://astro-lsst-01.astro.washington.edu:8083
 
 New experiments in this release:
 
