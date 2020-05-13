@@ -61,6 +61,10 @@ We typically try to take pairs seperated by 22 minutes, and in different filters
 
 ## Should we use some of twilight time for a NEO survey?
 
+## What should our general twilight strategy be? 
+
+Right now, we are mostly using it to fill out visits to ensure we get to the SRD values in the WFD in redder filters. We're using a greedy algorithm that isn't that impressive.  We could go to shorter exposures, or try to get third observations of things that have already been observed.
+
 ## Should we include a short exposure time survey as well as the standard 30s visits?
 
 We tested mixing in observations of 5s and 1s in addition to the usual survey.
