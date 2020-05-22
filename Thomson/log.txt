@@ -100,3 +100,44 @@ real    156m51.247s
 user    156m17.879s
 sys 0m14.572s
 
+------------------------------
+With the radial not correctly subtracted:
+
+inga:Thomson yoachim$ time python run_thomson.py --npoints 5192 --maxiter 1000
+Initial Potential=13285649.811667
+progress=100.0%Number of iterations = 1000
+Max number of iterations reached
+potential change = 8.714460e-09
+Final potential = 13271840.394317
+real    271m31.154s
+
+
+inga:Thomson yoachim$ time python run_thomson.py --npoints 6000 --maxiter 1000
+Initial Potential=17763264.936533
+progress=100.0%Number of iterations = 1000
+Max number of iterations reached
+potential change = 7.175939e-09
+Final potential = 17743351.318711
+real    371m20.193s
+
+---------------------------------
+Trying again with latest version
+inga:Thomson yoachim$ time python run_thomson.py --npoints 5192 --maxiter 1000
+Initial Potential=13285649.811667
+progress=53.5%Number of iterations = 535
+dtol reached
+final step potential change = 7.121980e-03
+Final potential = 13271752.867754
+
+inga:Thomson yoachim$ time python run_thomson.py --npoints 6000 --maxiter 1000
+Initial Potential=17763264.936533
+progress=34.2%Number of iterations = 342
+dtol reached
+final step potential change = 5.159434e-03
+Final potential = 17743334.989475
+
+Seems to be working even better than before!
+
+
+
+
