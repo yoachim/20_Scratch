@@ -1,0 +1,16 @@
+#!/bin/sh
+
+#rsync -av --recursive --delete --verbose --update --progress --exclude "Scratch*" --exclude ".Trash*" --exclude "Downloads*" --exclude "www/Virus" -e "ssh -A yoachim@gateway2.phys.washington.edu ssh" yoachim@inga:"/Users/yoachim" /Volumes/scallop/UW_inga
+
+
+
+#rsync -av --recursive --delete --verbose --update --progress --exclude "Scratch*" --exclude ".Trash*" --exclude "Downloads*" --exclude "www/Virus" -e "ssh -A yoachim@ivy.astro.washington.edu ssh" yoachim@inga:"/Users/yoachim" /Volumes/scallop/UW_inga
+
+
+# ssh -N -L 2222:inga:22 gateway.phys.washington.edu &
+#ssh -N -L 2222:inga:22 ivy.astro.washington.edu &
+
+#rsync -av --recursive --delete --verbose --update --progress --exclude ".Trash*" --exclude "Downloads*"  --exclude "*Archive_scratch1*" --exclude "ops*_sqlite.db*" --exclude "enigma*sqlite.db"  --exclude "kraken*sqlite.db" --exclude "www/Virus" --exclude "ewok*sqlite.db" --exclude "minion*sqlite.db" --exclude "yoachim/lsst" --exclude "yoachim/Library/Caches" --exclude "Scratch/allsky*" --exclude "Scratch/cadenceCheck*" -e "ssh -p 2222" yoachim@localhost:"/Users/yoachim" /Volumes/scallop/UW_inga
+rsync -av --recursive --delete --verbose --update --progress --exclude "*Atlas/atlas*" --exclude "*all_sky_sqlite.db" --exclude ".Trash*" --exclude "Downloads*"  --exclude "*Archive_scratch1*" --exclude "www/Virus" --exclude "ewok*sqlite.db" --exclude "yoachim/lsst" --exclude "yoachim/Library/Caches" --exclude "*Scratch*"  --exclude "*000*.npz" --exclude "*gitRepos*" -e "ssh" yoachim@inga.astro.washington.edu:"/Users/yoachim" /Volumes/home/Backups/UW_inga
+
+# ps | grep "ssh -N -L 2222" | awk '{print$1}' | xargs -I'{}' kill '{}'
