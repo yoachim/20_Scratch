@@ -1,6 +1,19 @@
 # Outstanding Questions for LSST Cadence simulations
 
-With the release of [75 new survey simulations in v1.4](https://community.lsst.org/t/january-2020-update-fbs-1-4-runs/4006), we are now ready to start combining strategies to construct the first version of the LSST scheduler.
+
+It's helpful to have a baseline survey that is considered generally acceptable. Then we have a solid comparison point for running new experiments and optimizations.
+
+Maybe the SCOC could help us set a new baseline run?
+
+Decisions that would be nice to have SCOC approval
+
+1) Observations taken in pairs in different filters (u+g, g+r, etc). (we can experiement with different pairing strategies, but as a baseline this seems like a solid pick)
+2) Footprint. We have been using ye olde footprint for a long time. I generated an initial "compromise footprint" as part of v1.6. We could explore the parameter space of that compromise (how large to make bulge, what fraction to give to WFD, include northern stripe or not), and then pick one as the new baseline footprint.
+
+
+
+
+
 
 ## Which deep drilling strategy should we employ?
 
