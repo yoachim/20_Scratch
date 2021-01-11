@@ -1,6 +1,6 @@
 
 
-| Dir Name | DB Filename | Notes |
+| v1.4 Dir Name | DB Filename | Notes |
 |--- | --- | --- |
  pair_strat | pair_strategy_4_v1.4_10yrs.db | 
  pair_strat | pair_strategy_3_v1.4_10yrs.db | 
@@ -51,7 +51,6 @@
  third_obs | third_obs_v1.4_10yrs.db | 
  third_obs | third_obs_pt60v1.4_10yrs.db | 
  no_pairs | nopairs_v1.4_10yrs.db | 
- satellite_dodge | old_db | sat_dodge_v1.4_10yrs.db | 
  DDF_experiment | longseasonddf_v1.4_10yrs.db | 
  DDF_experiment | flexddf_v1.4_10yrs.db | 
  DDF_experiment | darkddf_v1.4_10yrs.db | 
@@ -123,6 +122,10 @@
  wfd_vary | wfd_vary_fp2v1.4_10yrs.db | 
  wfd_vary | wfd_vary_fp4v1.4_10yrs.db | 
  wfd_vary | wfd_vary_fp1v1.4_10yrs.db | 
+
+
+ | v1.5 Dir Name | DB Filename | Notes |
+|--- | --- | --- |
  alt_roll_dust | alt_roll_mod2_dust_sdf_0.20_v1.5_10yrs.db | 
  alt_roll_dust | roll_mod2_dust_sdf_0.20_v1.5_10yrs.db | 
  alt_roll_dust | alt_dust_v1.5_10yrs.db | 
@@ -146,11 +149,11 @@
  third_obs | third_obs_pt45v1.5_10yrs.db | 
  third_obs | third_obs_pt60v1.5_10yrs.db | 
  third_obs | third_obs_pt120v1.5_10yrs.db | 
- u60 | u60_v1.5_10yrs.db | 
- twilight_neo | twilight_neo_mod2_v1.5_10yrs.db | 
- twilight_neo | twilight_neo_mod3_v1.5_10yrs.db | 
- twilight_neo | twilight_neo_mod1_v1.5_10yrs.db | 
- twilight_neo | twilight_neo_mod4_v1.5_10yrs.db | 
+ u60 | u60_v1.5_10yrs.db | Obsolete (see v1.7 u_long)
+ twilight_neo | twilight_neo_mod2_v1.5_10yrs.db | Obsolete (see v1.7)
+ twilight_neo | twilight_neo_mod3_v1.5_10yrs.db | Obsolete (see v1.7)
+ twilight_neo | twilight_neo_mod1_v1.5_10yrs.db | Obsolete (see v1.7)
+ twilight_neo | twilight_neo_mod4_v1.5_10yrs.db | Obsolete (see v1.7)
  var_expt | var_expt_v1.5_10yrs.db | 
  rolling | rolling_mod6_sdf_0.10_v1.5_10yrs.db | 
  rolling | rolling_mod2_sdf_0.20_v1.5_10yrs.db | 
@@ -208,6 +211,9 @@
  goodseeing | goodseeing_i_v1.5_10yrs.db | 
  goodseeing | goodseeing_gi_v1.5_10yrs.db | 
  goodseeing | goodseeing_gz_v1.5_10yrs.db | 
+
+ | v1.6 Dir Name | DB Filename | Notes |
+|--- | --- | --- |
  even_filters | even_filters_alt_g_v1.6_10yrs.db | 
  even_filters | even_filters_g_v1.6_10yrs.db | 
  even_filters | even_filters_altv1.6_10yrs.db | 
@@ -229,15 +235,18 @@
  potential_schedulers | rolling_exgal_mod2_dust_sdf_0.80_nexp2_v1.6_10yrs.db | 
  potential_schedulers | baseline_nexp1_v1.6_10yrs.db | 
  potential_schedulers | baseline_nexp2_v1.6_10yrs.db | 
- rolling_fpo | rolling_fpo_3nslice1.0_v1.6_10yrs.db | 
- rolling_fpo | rolling_fpo_2nslice0.9_v1.6_10yrs.db | 
- rolling_fpo | rolling_fpo_2nslice1.0_v1.6_10yrs.db | 
- rolling_fpo | rolling_fpo_3nslice0.8_v1.6_10yrs.db | 
- rolling_fpo | rolling_fpo_2nslice0.8_v1.6_10yrs.db | 
- rolling_fpo | rolling_fpo_3nslice0.9_v1.6_10yrs.db | 
- rolling_fpo | rolling_fpo_6nslice1.0_v1.6_10yrs.db | 
- rolling_fpo | rolling_fpo_6nslice0.8_v1.6_10yrs.db | 
- rolling_fpo | rolling_fpo_6nslice0.9_v1.6_10yrs.db | 
+ rolling_fpo | rolling_fpo_3nslice1.0_v1.6_10yrs.db | Obsolete (see v1.7 rolling)
+ rolling_fpo | rolling_fpo_2nslice0.9_v1.6_10yrs.db | Obsolete (see v1.7 rolling)
+ rolling_fpo | rolling_fpo_2nslice1.0_v1.6_10yrs.db | Obsolete (see v1.7 rolling)
+ rolling_fpo | rolling_fpo_3nslice0.8_v1.6_10yrs.db | Obsolete (see v1.7 rolling)
+ rolling_fpo | rolling_fpo_2nslice0.8_v1.6_10yrs.db | Obsolete (see v1.7 rolling)
+ rolling_fpo | rolling_fpo_3nslice0.9_v1.6_10yrs.db | Obsolete (see v1.7 rolling)
+ rolling_fpo | rolling_fpo_6nslice1.0_v1.6_10yrs.db | Obsolete (see v1.7 rolling)
+ rolling_fpo | rolling_fpo_6nslice0.8_v1.6_10yrs.db | Obsolete (see v1.7 rolling)
+ rolling_fpo | rolling_fpo_6nslice0.9_v1.6_10yrs.db | Obsolete (see v1.7 rolling)
+
+ | v1.7 Dir Name | DB Filename | Notes |
+|--- | --- | --- |
  baseline | baseline_nexp2_v1.7_10yrs.db | 
  baseline | baseline_nexp1_v1.7_10yrs.db | 
  wfd_cadence_drive | cadence_drive_gl30v1.7_10yrs.db | 
