@@ -247,15 +247,15 @@
 
  | v1.7 Dir Name | DB Filename | Notes |
 |--- | --- | --- |
- baseline | baseline_nexp2_v1.7_10yrs.db | 
+ baseline | baseline_nexp2_v1.7_10yrs.db | Baseline. v1.7 uses 2x15s visit default
  baseline | baseline_nexp1_v1.7_10yrs.db | 
- wfd_cadence_drive | cadence_drive_gl30v1.7_10yrs.db | 
+ wfd_cadence_drive | cadence_drive_gl30v1.7_10yrs.db | Force blue filters in bright time
  wfd_cadence_drive | cadence_drive_gl100v1.7_10yrs.db | 
  wfd_cadence_drive | cadence_drive_gl30_gcbv1.7_10yrs.db | 
  wfd_cadence_drive | cadence_drive_gl100_gcbv1.7_10yrs.db | 
  wfd_cadence_drive | cadence_drive_gl200v1.7_10yrs.db | 
  wfd_cadence_drive | cadence_drive_gl200_gcbv1.7_10yrs.db | 
- footprint_tune | footprint_1_v1.710yrs.db | 
+ footprint_tune | footprint_1_v1.710yrs.db | Survey footprint variations based on dust extinction
  footprint_tune | footprint_0_v1.710yrs.db | 
  footprint_tune | footprint_5_v1.710yrs.db | 
  footprint_tune | footprint_7_v1.710yrs.db | 
@@ -264,15 +264,15 @@
  footprint_tune | footprint_8_v1.710yrs.db | 
  footprint_tune | footprint_6_v1.710yrs.db | 
  footprint_tune | footprint_3_v1.710yrs.db | 
- u_long | u_long_ms_50_v1.7_10yrs.db | 
+ u_long | u_long_ms_50_v1.7_10yrs.db | 1-snap longer u exposures
  u_long | u_long_ms_40_v1.7_10yrs.db | 
  u_long | u_long_ms_30_v1.7_10yrs.db | 
  u_long | u_long_ms_60_v1.7_10yrs.db | 
- twi_pairs | twi_pairs_mixed_v1.7_10yrs.db | 
+ twi_pairs | twi_pairs_mixed_v1.7_10yrs.db | Taking pairs in twilight
  twi_pairs | twi_pairs_v1.7_10yrs.db | 
  twi_pairs | twi_pairs_mixed_repeat_v1.7_10yrs.db | 
  twi_pairs | twi_pairs_repeat_v1.7_10yrs.db | 
- rolling_nm | rolling_nm_scale0.8_nslice3_v1.7_10yrs.db | 
+ rolling_nm | rolling_nm_scale0.8_nslice3_v1.7_10yrs.db | Rolling cadence, no nightly N/S modulation
  rolling_nm | rolling_nm_scale0.9_nslice2_v1.7_10yrs.db | 
  rolling_nm | rolling_nm_scale1.0_nslice2_v1.7_10yrs.db | 
  rolling_nm | rolling_nm_scale0.4_nslice3_v1.7_10yrs.db | 
@@ -284,12 +284,12 @@
  rolling_nm | rolling_nm_scale0.6_nslice3_v1.7_10yrs.db | 
  rolling_nm | rolling_nm_scale0.2_nslice3_v1.7_10yrs.db | 
  rolling_nm | rolling_nm_scale0.6_nslice2_v1.7_10yrs.db | 
- euclid_dither | euclid_dither2_v1.7_10yrs.db | 
+ euclid_dither | euclid_dither2_v1.7_10yrs.db | Custom dither pattern for Euclid DDF
  euclid_dither | euclid_dither1_v1.7_10yrs.db | 
  euclid_dither | euclid_dither4_v1.7_10yrs.db | 
  euclid_dither | euclid_dither5_v1.7_10yrs.db | 
  euclid_dither | euclid_dither3_v1.7_10yrs.db | 
- rolling | rolling_scale1.0_nslice2_v1.7_10yrs.db | 
+ rolling | rolling_scale1.0_nslice2_v1.7_10yrs.db | Rolling cadence, nightly N/S modulation
  rolling | rolling_scale0.8_nslice3_v1.7_10yrs.db | 
  rolling | rolling_scale0.2_nslice3_v1.7_10yrs.db | 
  rolling | rolling_scale0.4_nslice2_v1.7_10yrs.db | 
@@ -301,19 +301,19 @@
  rolling | rolling_scale1.0_nslice3_v1.7_10yrs.db | 
  rolling | rolling_scale0.6_nslice3_v1.7_10yrs.db | 
  rolling | rolling_scale0.4_nslice3_v1.7_10yrs.db | 
- twi_neo | twi_neo_pattern5_v1.7_10yrs.db | 
+ twi_neo | twi_neo_pattern5_v1.7_10yrs.db | Twilight NEO survey
  twi_neo | twi_neo_pattern3_v1.7_10yrs.db | 
  twi_neo | twi_neo_pattern4_v1.7_10yrs.db | 
  twi_neo | twi_neo_pattern1_v1.7_10yrs.db | 
  twi_neo | twi_neo_pattern2_v1.7_10yrs.db | 
  twi_neo | twi_neo_pattern7_v1.7_10yrs.db | 
  twi_neo | twi_neo_pattern6_v1.7_10yrs.db | 
- pair_times | pair_times_33_v1.7_10yrs.db | 
+ pair_times | pair_times_33_v1.7_10yrs.db | Vary blob pair timings
  pair_times | pair_times_44_v1.7_10yrs.db | 
  pair_times | pair_times_55_v1.7_10yrs.db | 
  pair_times | pair_times_22_v1.7_10yrs.db | 
  pair_times | pair_times_11_v1.7_10yrs.db | 
- ddf_dither | ddf_dither0.70_v1.7_10yrs.db | 
+ ddf_dither | ddf_dither0.70_v1.7_10yrs.db | Vary DDF spatial dither size
  ddf_dither | ddf_dither0.30_v1.7_10yrs.db | 
  ddf_dither | ddf_dither1.50_v1.7_10yrs.db | 
  ddf_dither | ddf_dither2.00_v1.7_10yrs.db | 
